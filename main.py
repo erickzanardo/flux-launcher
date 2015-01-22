@@ -13,15 +13,16 @@ labels = []
 i = 0
 
 for file in dirs:
-    f = open(path + file)
-    obj = {'name': '', 'command': '', 'namelower': ''}
-    for line in f:
-        if line.startswith('Name=') and obj['name'] == '':
-            obj['name'] = line.replace('Name=', '')
-            obj['namelower'] = obj['name'].lower()
-        elif line.startswith('Exec=') and obj['command'] == '':
-            obj['command'] = line.replace('Exec=', '').strip()
-    objs.append(obj)
+    if file.endswith('.desktop'):
+        f = open(path + file)
+        obj = {'name': '', 'command': '', 'namelower': ''}
+        for line in f:
+            if line.startswith('Name=') and obj['name'] == '':
+                obj['name'] = line.replace('Name=', '')
+                obj['namelower'] = obj['name'].lower()
+            elif line.startswith('Exec=') and obj['command'] == '':
+                obj['command'] = line.replace('Exec=', '').strip()
+        objs.append(obj)
 
 def callback(sv):
     text = sv.get().lower()
