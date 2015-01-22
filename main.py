@@ -20,7 +20,7 @@ for file in dirs:
             obj['name'] = line.replace('Name=', '')
             obj['namelower'] = obj['name'].lower()
         elif line.startswith('Exec=') and obj['command'] == '':
-            obj['command'] = line.replace('Exec=', '')
+            obj['command'] = line.replace('Exec=', '').strip()
     objs.append(obj)
 
 def callback(sv):
@@ -42,7 +42,8 @@ def callback(sv):
 
 def onEnter(o):
     if len(filteredObjs) > 0: 
-        os.system(filteredObjs[i]['command'])
+        print '(' + filteredObjs[i]['command'] + ' &)'
+        os.system('(' + filteredObjs[i]['command'] + ' &)')
         quit()
 
 def select():
