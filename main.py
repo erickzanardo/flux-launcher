@@ -3,6 +3,7 @@ from Tkinter import *
 import os, sys
 
 root = Tk()
+root.wm_title('Launcher')
 
 path = '/usr/share/applications/'
 dirs = os.listdir(path)
